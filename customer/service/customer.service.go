@@ -1,14 +1,10 @@
 package service
 
 import (
-	"fmt"
-
+	"github.com/AngelVzla99/e-commerce-user-ms/customer/dto"
+	"github.com/AngelVzla99/e-commerce-user-ms/customer/mapper"
 	"github.com/AngelVzla99/e-commerce-user-ms/customer/repository"
 )
-
-func Init() {
-	fmt.Println("Init (Service)")
-}
 
 func NewCustomerService() *CustomerService {
 	return &CustomerService{
@@ -20,7 +16,12 @@ type CustomerService struct {
 	repository *repository.CustomerRepository
 }
 
-func (s *CustomerService) GetCustomers() {
-	fmt.Println("GetCustomers (Service)")
-	s.repository.GetCustomers()
+func (s *CustomerService) CreateCustomers(dto dto.CreateCustomerDto) (string, error) {
+	customerId, error := s.repository.CreateCustomers(mapper.MapCustomerDtoToDbe(dto))
+
+	if error != nil {
+		return "", error
+	}
+
+	return customerId, nil
 }

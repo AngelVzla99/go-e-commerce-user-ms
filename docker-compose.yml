@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  mongodb:
+    image: mongo:latest
+    command: mongod
+    ports:
+      - "27017:27017"
