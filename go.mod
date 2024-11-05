@@ -1,4 +1,4 @@
-module github.com/yourusername/my-gin-project
+module github.com/AngelVzla99/e-commerce-user-ms
 
 go 1.23.2
 
