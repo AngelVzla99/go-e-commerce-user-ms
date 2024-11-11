@@ -4,6 +4,7 @@ import (
 	"context"
 
 	mongo_client "github.com/AngelVzla99/e-commerce-user-ms/integrations/mongo"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -29,4 +30,22 @@ func (repository *CustomerRepository) CreateCustomers(dto CreateCustomerDbe) (st
 	}
 
 	return dbResponse.InsertedID.(primitive.ObjectID).Hex(), nil
+}
+
+func (repository *CustomerRepository) GetCustomerById(idString string) (CustomerDbe, error) {
+	var customer CustomerDbe
+
+	objID, err := primitive.ObjectIDFromHex(idString)
+	if err != nil {
+		panic(err)
+	}
+
+	filter := bson.M{"_id": objID}
+	dbError := repository.collection.FindOne(repository.ctx, filter).Decode(&customer)
+
+	if dbError != nil {
+		return CustomerDbe{}, dbError
+	}
+
+	return customer, nil
 }

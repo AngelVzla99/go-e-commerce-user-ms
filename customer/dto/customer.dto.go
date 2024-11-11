@@ -14,3 +14,11 @@ type CreateCustomerDto struct {
 	// Address AddressDto `json:"address" binding:"required"`
 	Phone string `json:"phone" binding:"required"`
 }
+
+type CustomerDto struct {
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	Email string `json:"email"`
+	// Address AddressDto `json:"address"`
+	Phone string `json:"phone"`
+}

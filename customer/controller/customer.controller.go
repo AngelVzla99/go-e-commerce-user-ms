@@ -38,3 +38,15 @@ func (c *CustomerController) CreateCustomers(request *gin.Context) {
 
 	request.JSON(http.StatusCreated, gin.H{"message": "Customer created successfully", "data": data})
 }
+
+func (c *CustomerController) GetCustomer(request *gin.Context) {
+	id := request.Param("id")
+	customer, error := c.service.GetCustomer(id)
+
+	if error != nil {
+		request.JSON(http.StatusNotFound, gin.H{"error": error.Error()})
+		return
+	}
+
+	request.JSON(http.StatusOK, gin.H{"data": customer})
+}

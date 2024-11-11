@@ -12,4 +12,5 @@ func SetupRouter(router *gin.Engine) {
 	controllerStruct := controller.NewCustomerController()
 
 	customer.POST("", controllerStruct.CreateCustomers)
+	customer.GET("/:id", controllerStruct.GetCustomer)
 }

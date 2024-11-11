@@ -12,3 +12,12 @@ func MapCustomerDtoToDbe(dto dto.CreateCustomerDto) repository.CreateCustomerDbe
 		Phone: dto.Phone,
 	}
 }
+
+func MapCustomerDbeToDto(dbe repository.CustomerDbe) dto.CustomerDto {
+	return dto.CustomerDto{
+		ID:    dbe.ID,
+		Name:  dbe.Name,
+		Email: dbe.Email,
+		Phone: dbe.Phone,
+	}
+}
