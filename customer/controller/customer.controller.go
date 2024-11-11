@@ -48,5 +48,5 @@ func (c *CustomerController) GetCustomer(request *gin.Context) {
 		return
 	}
 
-	request.JSON(http.StatusOK, gin.H{"data": customer})
+	request.JSON(http.StatusOK, customer)
 }
